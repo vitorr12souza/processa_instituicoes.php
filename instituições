@@ -1,0 +1,38 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "vinculos_dourados";
+
+// Criar conexão
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar conexão
+if ($conn->connect_error) {
+    die("Conexão falhou: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nome = $_POST["nome"];
+    $email = $_POST["email"];
+    $endereco = $_POST["endereco"];
+    $cnpj = $_POST["cnpj"];
+    $historia = $_POST["historia"];
+    $ajuda = $_POST["ajuda"];
+    $contato = $_POST["contato"];
+    $social = $_POST["social"];
+    $responsaveis = $_POST["responsaveis"];
+    $modo_trabalho = $_POST["modo_trabalho"];
+
+    $sql = "INSERT INTO instituicoes (nome, email, endereco, cnpj, historia, ajuda, contato, social, responsaveis, modo_trabalho)
+            VALUES ('$nome', '$email', '$endereco', '$cnpj', '$historia', '$ajuda', '$contato', '$social', '$responsaveis', '$modo_trabalho')";
+    
+    if ($conn->query($sql) === TRUE) {
+        echo "Novo registro de instituição criado com sucesso";
+    } else {
+        echo "Erro: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+$conn->close();
+?>
