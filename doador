@@ -1,0 +1,36 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "vinculos_dourados";
+
+// Criar conexão
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar conexão
+if ($conn->connect_error) {
+    die("Conexão falhou: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nome = $_POST["nome"];
+    $email = $_POST["email"];
+    $cpf = $_POST["cpf"];
+    $endereco = $_POST["endereco"];
+    $historia = $_POST["historia"];
+    $ajuda = $_POST["ajuda"];
+    $contato = $_POST["contato"];
+    $social = $_POST["social"];
+
+    $sql = "INSERT INTO doador (nome, email, cpf, endereco, historia, ajuda, contato, social)
+            VALUES ('$nome', '$email', '$cpf', '$endereco', '$historia', '$ajuda', '$contato', '$social')";
+    
+    if ($conn->query($sql) === TRUE) {
+        echo "Novo registro de doador criado com sucesso";
+    } else {
+        echo "Erro: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+$conn->close();
+?>
