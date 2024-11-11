@@ -1,0 +1,37 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "vinculos_dourados";
+
+// Criar conexão
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar conexão
+if ($conn->connect_error) {
+    die("Conexão falhou: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nome = $_POST["nome"];
+    $email = $_POST["email"];
+    $cpf = $_POST["cpf"];
+    $endereco = $_POST["endereco"];
+    $historia = $_POST["historia"];
+    $ajuda = $_POST["ajuda"];
+    $contato = $_POST["contato"];
+    $social = $_POST["social"];
+    $responsaveis = $_POST["responsaveis"];
+
+    $sql = "INSERT INTO voluntarios (nome, email, cpf, endereco, historia, ajuda, contato, social, responsaveis)
+            VALUES ('$nome', '$email', '$cpf', '$endereco', '$historia', '$ajuda', '$contato', '$social', '$responsaveis')";
+    
+    if ($conn->query($sql) === TRUE) {
+        echo "Novo registro de voluntário criado com sucesso";
+    } else {
+        echo "Erro: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+$conn->close();
+?>
