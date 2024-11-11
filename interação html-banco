@@ -1,0 +1,17 @@
+<!-- Formulário de Instituição -->
+<form action="processa_instituicoes.php" method="POST">
+    <!-- Campos do formulário -->
+    <button type="submit">Enviar Cadastro</button>
+</form>
+
+<!-- Formulário de Doador -->
+<form action="processa_doador.php" method="POST">
+    <!-- Campos do formulário -->
+    <button type="submit">Enviar Cadastro</button>
+</form>
+
+<!-- Formulário de Voluntário -->
+<form action="processa_voluntarios.php" method="POST">
+    <!-- Campos do formulário -->
+    <button type="submit">Enviar Cadastro</button>
+</form>
